@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Notepad</title>
+    <style>body{
+      padding-top:30px;
+      background-color: #f7f7f7;
+  }
+
+  ul{
+      padding-left:0;
+      list-style: none;
+  }
+  ul li{
+      font-size: 18px;
+      padding: 15px 0px;
+  }
+  button.deleteButton{
+      background-color:#ed9010;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      text-align: center;
+      float: right;
+  }
+  ul li input{
+      position: relative;
+      top: -3px;
+      margin-right:5px;
+  }
+  button.buttonone{
+      background-color: #ed9010;
+      margin-top: 5px;
+      padding: 3px;
+  }
+  .checkedItem{
+      text-decoration: line-through;
+  }</style>
+  </head>
+  <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 mx-auto">
+            <form action="index.html">
+              <ul class="toDoList">
+                <li>
+                  <input type="checkbox" >
+                  <a href="www.google.com">www.google.com</a>
+                  <button class="deleteButton">X</button>
+                </li>
+                <li>
+                  <input type="checkbox" >
+                  <a href="www.google.com">www.webtekno.com</a>
+                  <button class="deleteButton">X</button>
+                </li>
+                <li>
+                  <input type="checkbox">
+                  <a href="www.google.com">www.yandex.com</a>
+                  <button class="deleteButton">X</button>
+                </li>
+                <li>
+                  <input type="checkbox">
+                  <a href="www.google.com">www.google.com</a>
+                  <button class="deleteButton">X</button>
+                </li>
+              </ul>
+              <input type="text" name="todoItem" class="form-control" placeholder="Todo Item">
+              <button class="buttonone mx-auto d table">Kaydet</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var output = (day<10 ? '0' : '') + day + '/'+ (month<10 ? '0' : '') + month  + '/' + d.getFullYear();
+
+       $('.buttonone').on('click',function (e){
+         e.preventDefault()
+         let aValue = $('input[name=todoItem]').val()
+         $('input[name=todoItem]').val('')
+         if (aValue == '' || aValue.length <=4) {
+           alert("Lutfen minimum 4 karakterden fazla bir metin giriniz!");
+         } else {
+          $('.toDoList').append('<li><input type="checkbox"> <a href='+aValue+'> '+aValue+'</a> ' +output + '<button class="deleteButton">X</button>\n</li>')
+         }
+
+       })
+
+       $(document).on('click','.toDoList input[type = checkbox]',function(){
+        $(this).parent().toggleClass('checkedItem')
+       })
+
+       $(document).on('click','.toDoList button.deleteButton',function(a){
+        $(this).parent().remove()
+        a.preventDefault()
+       })
+
+    </script>
+
+
+
+  </body>
+</html>
